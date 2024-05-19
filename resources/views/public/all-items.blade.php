@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url('https://cdn.reflowhq.com/v2/toolkit.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Navbar-Centered-Brand-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/all-items.css') }}">
 </head>
 
 <body>

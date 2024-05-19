@@ -1,0 +1,29 @@
+body {
+}
+
+.four-items {
+  padding: 60px 0;
+}
+
+.four-items h1 {
+  margin-bottom: 50px;
+}
+
+.button-viewall {
+  padding: 60px;
+}
+
+img {
+}
+
+.hero-content {
+  background: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .sometimes-shown-img {
+    display: block;
+    display: none;
+  }
+}
+
