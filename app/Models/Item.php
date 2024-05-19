@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
     
     protected $fillable = [
         'name',
@@ -27,6 +29,26 @@ class Item extends Model
     public function attachment(): HasOne
     {
         return $this->hasOne(Attachment::class, 'item_id');
+    }
+    
+    public function reportedBy(): BelongsTo
+    {
+        return $this->belongsTo(PersonalInfo::class, 'reported_by');
+    }
+    
+    public function acknowledgedBy(): BelongsTo
+    {
+        return $this->belongsTo(PersonalInfo::class, 'acknowledged_by');
+    }
+    
+    public function claimedBy(): BelongsTo
+    {
+        return $this->belongsTo(PersonalInfo::class, 'claimed_by');
+    }
+    
+    public function releasedBy(): BelongsTo
+    {
+        return $this->belongsTo(PersonalInfo::class, 'released_by');
     }
     
     public function getStatusTextAttribute()
