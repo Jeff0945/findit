@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
@@ -23,11 +24,13 @@ class Item extends Model
         'created_by',
     ];
     
-    protected function casts()
+    public function attachment(): HasOne
     {
-        return [
-            'reported_at' => 'datetime',
-            'acknowledged_by' => 'datetime',
-        ];
+        return $this->hasOne(Attachment::class, 'item_id');
+    }
+    
+    public function getStatusTextAttribute()
+    {
+        return ucfirst($this->status);
     }
 }
