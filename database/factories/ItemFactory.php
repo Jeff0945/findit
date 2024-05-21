@@ -18,7 +18,6 @@ class ItemFactory extends Factory
             'name'            => fake()->words(3, true),
             'found_at'        => fake()->streetAddress(),
             'characteristics' => fake()->word(),
-            'status'          => fake()->word(),
             'reported_by'     => PersonalInfo::factory()->create(),
             'reported_at'     => Carbon::now(),
             'acknowledged_by' => PersonalInfo::factory()->create(),

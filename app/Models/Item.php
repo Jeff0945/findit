@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -16,7 +18,6 @@ class Item extends Model
         'name',
         'found_at',
         'characteristics',
-        'status',
         'reported_by',
         'reported_at',
         'acknowledged_by',
@@ -30,6 +31,17 @@ class Item extends Model
     {
         return $this->hasOne(Attachment::class, 'item_id');
     }
+    
+    public function statuses(): HasMany
+    {
+        return $this->hasMany(Status::class, 'item_id');
+    }
+    
+    public function status(): HasOne
+    {
+        return $this->hasOne(Status::class)->latestOfMany();
+    }
+    
     
     public function reportedBy(): BelongsTo
     {
@@ -51,8 +63,13 @@ class Item extends Model
         return $this->belongsTo(PersonalInfo::class, 'released_by');
     }
     
+    public function getReportedOnAttribute()
+    {
+        return Carbon::parse($this->reported_at)->format('D, d M Y H:i:s');
+    }
+    
     public function getStatusTextAttribute()
     {
-        return ucfirst($this->status);
+        return ucfirst($this->status?->value);
     }
 }

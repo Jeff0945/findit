@@ -2,21 +2,20 @@
 
 namespace Database\Factories;
 
-use App\Models\Attachment;
 use App\Models\Item;
 use App\Models\Status;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class AttachmentFactory extends Factory
+class StatusFactory extends Factory
 {
-    protected $model = Attachment::class;
+    protected $model = Status::class;
     
     public function definition(): array
     {
         return [
-            'path'       => $this->faker->imageUrl(),
-            'item_id'    => Item::factory()->has(Status::factory())->create(),
+            'item_id' => Item::factory(),
+            'value'      => fake()->randomElement(['unclaimed', 'claimed', 'donated']),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
