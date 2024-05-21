@@ -1,0 +1,1 @@
+<label {{ $attributes(['class' => 'mb-2 font-inter fw-bold']) }}>{{ $slot }}</label>
