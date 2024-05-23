@@ -28,10 +28,16 @@ class ItemsController extends Controller
     {
         $attributes = $this->processAttributes($request);
         
-        Item::create([
+        $item = Item::create([
             ...$attributes,
             'created_by' => Auth::user()->id
-        ])->addStatus($request);
+        ]);
+        
+        $item->addStatus($request);
+        
+        if ($request->hasFile('attachment')) {
+            $item->addAttachment($request->file('attachment'));
+        }
         
         return redirect()->route('admin.items.index');
     }
@@ -68,7 +74,13 @@ class ItemsController extends Controller
     
     public function update(Request $request, Item $item): RedirectResponse
     {
-        tap($item)->update($this->processAttributes($request))->addStatus($request);
+        $item = tap($item)->update($this->processAttributes($request));
+        
+        $item->addStatus($request);
+        
+        if ($request->hasFile('attachment')) {
+            $item->addAttachment($request->file('attachment'));
+        }
         
         return redirect()->route('admin.items.show', compact('item'));
     }

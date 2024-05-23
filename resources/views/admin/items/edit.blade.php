@@ -1,7 +1,7 @@
 <x-admin.layout>
     <x-slot:title>Edit Item</x-slot:title>
 
-    <form method="POST" action="{{ route('admin.items.update', compact('item')) }}">
+    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.items.update', compact('item')) }}">
         @csrf
         @method('PATCH')
 
@@ -30,7 +30,7 @@
                 </div>
             </header>
             <div style="width: 400px;height: 360px;margin-top: -360px;">
-                <img width="380" height="280" style="width: 380px;height: 300px;margin-top: 0px;" src="{{ $item->attachment?->path }}">
+                <img width="380" height="280" style="width: 380px;height: 300px;margin-top: 0px;" src="{{ $item->attachment?->url }}">
                 <input name="attachment" class="form-control" type="file" style="width: 380px;" accept="image/*">
                 <x-form-error name="attachment" />
             </div>

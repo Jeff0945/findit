@@ -33,7 +33,7 @@
                 </div>
             </header>
             <div style="width: 400px;height: 360px;margin-top: -360px;">
-                <img width="380" height="280" style="width: 380px;height: 300px;margin-top: 0px;" src="{{ $item->attachment?->path }}"/>
+                <img width="380" height="280" style="width: 380px;height: 300px;margin-top: 0px;" src="{{ $item->attachment?->url }}"/>
                 <input class="form-control" type="file" style="width: 380px;" required accept="image/*"/>
             </div>
             <div style="height: 350px;padding-bottom: 40px;margin-top: 30px;">
