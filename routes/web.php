@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
@@ -18,4 +20,17 @@ Route::controller(SessionController::class)->group(function () {
         Route::post('/register', 'attemptRegister')->name('register.attempt');
     });
     Route::post('/logout', 'logout')->middleware('auth')->name('logout');
+});
+
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+    
+    Route::group(['controller' => ItemsController::class, 'prefix' => 'items'], function () {
+        Route::get('/', 'index')->name('admin.items.index');
+        Route::get('/create', 'create')->name('admin.items.create');
+        Route::post('/', 'store')->name('admin.items.store');
+        Route::get('/{item}', 'show')->name('admin.items.show');
+        Route::get('/{item}/edit', 'edit')->name('admin.items.edit');
+        Route::patch('/{item}', 'update')->name('admin.items.update');
+    });
 });
