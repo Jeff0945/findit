@@ -1,7 +1,7 @@
 <x-admin.layout>
     <x-slot:title>Add Item</x-slot:title>
 
-    <form method="POST" action="{{ route('admin.items.store') }}">
+    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.items.store') }}">
         @csrf
 
         <x-form-timezone />

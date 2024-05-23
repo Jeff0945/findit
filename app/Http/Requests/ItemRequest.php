@@ -10,6 +10,7 @@ class ItemRequest extends FormRequest
 {
     public function rules(): array
     {
+        $imageMime = 'mimes:jpeg,jpg,png,gif';
         $commonRules = [
             'name'                    => ['required'],
             'found_at'                => ['required'],
@@ -29,11 +30,11 @@ class ItemRequest extends FormRequest
         
         return match ($this->method()) {
             'POST' => [
-                'attachment' => ['required', 'image'],
+                'attachment' => ['required', $imageMime],
                 ...$commonRules
             ],
             'PATCH' => [
-                'attachment' => ['nullable', 'image'],
+                'attachment' => ['nullable', $imageMime],
                 ...$commonRules
             ]
         };
