@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\ItemRequest;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,21 +28,25 @@ class Item extends Model
         'created_by',
     ];
     
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(Attachment::class);
+    }
+    
     public function attachment(): HasOne
     {
-        return $this->hasOne(Attachment::class, 'item_id');
+        return $this->hasOne(Attachment::class)->latestOfMany();
     }
     
     public function statuses(): HasMany
     {
-        return $this->hasMany(Status::class, 'item_id');
+        return $this->hasMany(Status::class);
     }
     
     public function status(): HasOne
     {
         return $this->hasOne(Status::class)->latestOfMany();
     }
-    
     
     public function reportedBy(): BelongsTo
     {
@@ -65,11 +70,67 @@ class Item extends Model
     
     public function getReportedOnAttribute()
     {
-        return Carbon::parse($this->reported_at)->format('D, d M Y H:i:s');
+        if (is_null($this->reported_at)) {
+            return '';
+        }
+        
+        return Carbon::parse($this->reported_at, 'UTC')
+            ->setTimezone('Asia/Manila')
+            ->format('M d, Y H:i');
+    }
+    
+    public function getReportedDateTimeAttribute()
+    {
+        if (is_null($this->reported_at)) {
+            return '';
+        }
+        
+        return Carbon::parse($this->reported_at, 'UTC')
+            ->setTimezone('Asia/Manila')
+            ->format('Y-m-d\TH:i');
+    }
+    
+    public function getClaimedOnAttribute()
+    {
+        if (is_null($this->claimed_at)) {
+            return '';
+        }
+        
+        return Carbon::parse($this->claimed_at, 'UTC')
+            ->setTimezone('Asia/Manila')
+            ->format('M d, Y H:i');
+    }
+    
+    public function getClaimedDateTimeAttribute()
+    {
+        if (is_null($this->claimed_at)) {
+            return '';
+        }
+        
+        return Carbon::parse($this->claimed_at, 'UTC')
+            ->setTimezone('Asia/Manila')
+            ->format('Y-m-d\TH:i');
+    }
+    
+    public function getCreatedOnAttribute()
+    {
+        return Carbon::parse($this->created_at, 'UTC')
+            ->setTimezone('Asia/Manila')
+            ->format('M d, Y H:i');
     }
     
     public function getStatusTextAttribute()
     {
         return ucfirst($this->status?->value);
+    }
+    
+    public function addStatus(ItemRequest $request)
+    {
+        $oldValue = $this->status?->value;
+        $newValue = $request->get('status');
+        
+        if ($oldValue !== $newValue) {
+            $this->statuses()->create(['value' => $newValue]);
+        }
     }
 }
