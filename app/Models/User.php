@@ -10,7 +10,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -45,10 +46,10 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
     }
-    
+
     public function getFullNameAttribute()
     {
         return implode(' ', [
@@ -57,7 +58,7 @@ class User extends Authenticatable
             $this->last_name
         ]);
     }
-    
+
     public function items(): HasMany
     {
         return $this->hasMany(Item::class, 'created_by');

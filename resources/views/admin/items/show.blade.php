@@ -8,32 +8,38 @@
                     <div>
                         <p style="font-size: 25px;color: rgba(53, 51, 45, 1);font-weight: bold;font-family: 'Inter';height: 40px;">
                             Name of an Item:</p>
-                        <input class="form-control d-xxl-flex" type="text" style="margin-top: -13px;" value="{{ $item->name }}" required/>
+                        <input class="form-control d-xxl-flex" type="text" style="margin-top: -13px;"
+                               value="{{ $item->name }}" required/>
                     </div>
                     <div style="height: 70px;margin-bottom: 0px;margin-top: 9px;">
                         <p style="font-size: 18px;color: rgba(53, 51, 45, 1);font-weight: bold;font-family: 'Inter';height: 30px;">
                             Date Posted:</p>
-                        <input class="form-control" type="text" style="margin-top: -13px;" value="{{ $item->created_on }}" required/>
+                        <input class="form-control" type="text" style="margin-top: -13px;"
+                               value="{{ $item->created_on }}" required/>
                     </div>
                     <div style="height: 70px;margin-bottom: 0px;">
                         <p style="font-size: 18px;color: rgba(53, 51, 45, 1);font-weight: bold;font-family: 'Inter';height: 30px;">
                             Location:</p>
-                        <input class="form-control" type="text" style="margin-top: -13px;" value="{{ $item->found_at }}" required/>
+                        <input class="form-control" type="text" style="margin-top: -13px;" value="{{ $item->found_at }}"
+                               required/>
                     </div>
                     <div style="height: 70px;margin-bottom: 0px;">
                         <p style="font-size: 18px;color: rgba(53, 51, 45, 1);font-weight: bold;font-family: 'Inter';height: 30px;">
                             Status:</p>
-                        <input class="form-control" type="text" style="margin-top: -13px;" value="{{ $item->status_text }}" required/>
+                        <input class="form-control" type="text" style="margin-top: -13px;"
+                               value="{{ $item->status_text }}" required/>
                     </div>
                     <div style="height: 70px;margin-bottom: 0px;">
                         <p style="font-size: 18px;font-weight: bold;font-family: 'Inter';color: rgba(53, 51, 45, 1);margin-bottom: 3px;">
                             Characteristics:</p>
-                        <input class="form-control" type="text" style="margin-top: 5px;" value="{{ $item->characteristics }}" required/>
+                        <input class="form-control" type="text" style="margin-top: 5px;"
+                               value="{{ $item->characteristics }}" required/>
                     </div>
                 </div>
             </header>
             <div style="width: 400px;height: 360px;margin-top: -360px;">
-                <img width="380" height="280" style="width: 380px;height: 300px;margin-top: 0px;" src="{{ $item->attachment?->url }}"/>
+                <img width="380" height="280" style="width: 380px;height: 300px;margin-top: 0px;"
+                     src="{{ $item->attachment?->url }}"/>
                 <input class="form-control" type="file" style="width: 380px;" required accept="image/*"/>
             </div>
             <div style="height: 350px;padding-bottom: 40px;margin-top: 30px;">
@@ -113,9 +119,9 @@
                                 <div style="height: 55px;">
                                     <p style="font-family: 'Inter';font-size: 18px;font-weight: bold;color: rgba(53, 51, 45, 1);margin-bottom: 0px;height: 25px;">
                                         <strong>Acknowledged by:</strong></p><input class="form-control" type="text"
-                                                                                style="height: 30px;padding-right: 0px;padding-left: 0px;padding-top: 0px;padding-bottom: 0px;"
-                                                                                value="{{ $item->acknowledgedBy?->name }}"
-                                                                                required/>
+                                                                                    style="height: 30px;padding-right: 0px;padding-left: 0px;padding-top: 0px;padding-bottom: 0px;"
+                                                                                    value="{{ $item->acknowledgedBy?->name }}"
+                                                                                    required/>
                                 </div>
                             </div>
                         </div>

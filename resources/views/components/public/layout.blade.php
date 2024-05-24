@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    {{ $slot }}
+{{ $slot }}
 <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ url('https://cdn.reflowhq.com/v2/toolkit.min.js') }}"></script>
 <script src="{{ asset('js/bs-init.js') }}"></script>

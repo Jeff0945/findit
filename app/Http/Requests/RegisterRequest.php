@@ -17,7 +17,7 @@ class RegisterRequest extends FormRequest
             'password'    => ['required', 'confirmed', 'min:8'],
         ];
     }
-    
+
     public function authorize(): bool
     {
         return !Auth::check();

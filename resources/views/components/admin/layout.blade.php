@@ -20,11 +20,11 @@
 </head>
 
 <body style="background: rgba(240, 238, 226, 1);">
-    <x-admin.nav />
+<x-admin.nav/>
 
-    <x-admin.logo />
+<x-admin.logo/>
 
-    {{ $slot }}
+{{ $slot }}
 </body>
 
 </html>

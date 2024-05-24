@@ -14,7 +14,7 @@ class LoginRequest extends FormRequest
             'password' => ['required'],
         ];
     }
-    
+
     public function authorize(): bool
     {
         return !Auth::check();

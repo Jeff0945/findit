@@ -13,7 +13,8 @@
         </select>
         <div class="d-flex gap-3">
             <div class="d-flex">
-                <input class="form-control rounded-end-0" type="search" style="width: 600px;margin-left: -18px;" placeholder="Looking for something?"/>
+                <input class="form-control rounded-end-0" type="search" style="width: 600px;margin-left: -18px;"
+                       placeholder="Looking for something?"/>
                 <x-button class="text-white bg-black rounded-start-0"><i class="fa fa-search"></i></x-button>
             </div>
             <a class="btn btn-primary bg-black" role="button" href="{{ route('admin.items.create') }}">

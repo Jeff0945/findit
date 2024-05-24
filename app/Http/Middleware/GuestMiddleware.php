@@ -13,7 +13,7 @@ class GuestMiddleware
         if (Auth::check()) {
             return redirect()->route('admin.dashboard');
         }
-        
+
         return $next($request);
     }
 }

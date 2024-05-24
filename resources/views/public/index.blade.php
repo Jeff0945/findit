@@ -12,13 +12,13 @@
         <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     </x-slot:styles>
 
-    <x-public.index-navbar />
+    <x-public.index-navbar/>
 
     <x-public.recent-reports>
         @foreach($items as $item)
-            <x-public.index-cards :item="$item" />
+            <x-public.index-cards :item="$item"/>
         @endforeach
     </x-public.recent-reports>
 
-    <x-public.index-footer />
+    <x-public.index-footer/>
 </x-public.layout>

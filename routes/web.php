@@ -18,7 +18,7 @@ Route::controller(SessionController::class)->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login', 'login')->name('login');
         Route::post('/login', 'attemptLogin')->name('login.attempt');
-        
+
         Route::get('/register', 'register')->name('register');
         Route::post('/register', 'attemptRegister')->name('register.attempt');
     });
@@ -27,7 +27,7 @@ Route::controller(SessionController::class)->group(function () {
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-    
+
     Route::group(['controller' => ItemsController::class, 'prefix' => 'items'], function () {
         Route::get('/', 'index')->name('admin.items.index');
         Route::get('/create', 'create')->name('admin.items.create');

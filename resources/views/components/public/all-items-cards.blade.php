@@ -2,7 +2,7 @@
 
 <div class="ref-product">
     <div class="ref-media">
-        <img class="ref-image" src="{{ $item->attachment?->url }}" loading="lazy" />
+        <img class="ref-image" src="{{ $item->attachment?->url }}" loading="lazy"/>
     </div>
     <div class="ref-product-data">
         <div class="ref-product-info">
