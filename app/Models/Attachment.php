@@ -9,24 +9,26 @@ use Illuminate\Support\Facades\Storage;
 
 class Attachment extends Model
 {
-    use HasFactory, SoftDeletes;
-    
+    use HasFactory;
+    use SoftDeletes;
+
     protected $fillable = [
-        'path',
         'item_id',
+        'original_file_name',
+        'path',
     ];
-    
+
     public function getFileAttribute()
     {
         if (filter_var($this->path, FILTER_VALIDATE_URL)) {
             return $this->path;
         }
-        
+
         $storage = config('filesystems.default');
-        
+
         return Storage::disk($storage)->get($this->path);
     }
-    
+
     public function getUrlAttribute()
     {
         return filter_var($this->path, FILTER_VALIDATE_URL)
