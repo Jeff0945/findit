@@ -140,12 +140,12 @@ class Item extends Model
     public function addAttachment(UploadedFile $file): void
     {
         $storage = config('filesystems.default');
-        $path = Storage::disk($storage)->putFile('/', $file);
+        $path    = Storage::disk($storage)->putFile('/', $file);
 
         Attachment::create([
-            'item_id' => $this->id,
+            'item_id'            => $this->id,
             'original_file_name' => $file->getClientOriginalName(),
-            'path' => $path
+            'path'               => $path
         ]);
     }
 }

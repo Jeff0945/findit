@@ -12,14 +12,14 @@ class PublicController extends Controller
             ->latest()
             ->take(4)
             ->get();
-        
+
         return view('public.index', compact('items'));
     }
-    
+
     public function allItems()
     {
         $items = Item::with(['attachment'])->get();
-        
+
         return view('public.all-items', compact(['items']));
     }
 }

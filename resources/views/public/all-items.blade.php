@@ -6,11 +6,11 @@
 
     <x-slot:title>All Items</x-slot:title>
 
-    <x-public.all-items-navbar />
+    <x-public.all-items-navbar/>
 
     <x-public.all-items-products>
         @foreach($items as $item)
-            <x-public.all-items-cards :item="$item" />
+            <x-public.all-items-cards :item="$item"/>
         @endforeach
     </x-public.all-items-products>
 </x-public.layout>

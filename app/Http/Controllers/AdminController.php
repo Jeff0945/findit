@@ -8,17 +8,17 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $claimedCount = Item::whereRelation('status', 'value', 'claimed');
+        $claimedCount   = Item::whereRelation('status', 'value', 'claimed');
         $unclaimedCount = Item::whereRelation('status', 'value', 'unclaimed');
-        $donatedCount = Item::whereRelation('status', 'value', 'donated');
-        
+        $donatedCount   = Item::whereRelation('status', 'value', 'donated');
+
         return view('admin.index', [
-            'claimed' => $claimedCount->count(),
+            'claimed'   => $claimedCount->count(),
             'unclaimed' => $unclaimedCount->count(),
-            'donated' => $donatedCount->count(),
+            'donated'   => $donatedCount->count(),
         ]);
     }
-    
+
     public function show($status)
     {
         // TODO: Add chart view functionality

@@ -10,7 +10,7 @@ class ItemRequest extends FormRequest
 {
     public function rules(): array
     {
-        $imageMime = 'mimes:jpeg,jpg,png,gif';
+        $imageMime   = 'mimes:jpeg,jpg,png,gif';
         $commonRules = [
             'name'                    => ['required'],
             'found_at'                => ['required'],
@@ -27,7 +27,7 @@ class ItemRequest extends FormRequest
             'claimed_at'              => ['nullable'],
             'released_by'             => ['nullable']
         ];
-        
+
         return match ($this->method()) {
             'POST' => [
                 'attachment' => ['required', $imageMime],
@@ -39,12 +39,12 @@ class ItemRequest extends FormRequest
             ]
         };
     }
-    
+
     public function authorize(): bool
     {
         return Auth::user()?->user_type === 'admin';
     }
-    
+
     protected function prepareForValidation(): void
     {
         $this->merge([
@@ -52,7 +52,7 @@ class ItemRequest extends FormRequest
             'reported_at' => $this->toUTC($this->get('reported_at'))
         ]);
     }
-    
+
     private function toUTC($dateTime): string
     {
         return Carbon::parse($dateTime, $this->_tz)
