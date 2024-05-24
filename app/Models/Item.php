@@ -10,11 +10,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class Item extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -135,13 +137,14 @@ class Item extends Model
         }
     }
 
-    public function addAttachment($file): void
+    public function addAttachment(UploadedFile $file): void
     {
         $storage = config('filesystems.default');
         $path = Storage::disk($storage)->putFile('/', $file);
 
         Attachment::create([
             'item_id' => $this->id,
+            'original_file_name' => $file->getClientOriginalName(),
             'path' => $path
         ]);
     }
