@@ -41,5 +41,7 @@
         <x-auth.form-row class="mt-2">
             <x-form-button class="w-100 py-2" type="submit">Submit</x-form-button>
         </x-auth.form-row>
+
+        <a class="form-text font-inter text-decoration-none" href="{{ route('login') }}">Already have an account? Log in here.</a>
     </x-auth.input-container>
 </x-auth.layout>
