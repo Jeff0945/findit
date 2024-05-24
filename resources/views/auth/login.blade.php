@@ -17,7 +17,9 @@
         </x-auth.form-row>
 
         <x-auth.form-row class="mt-2">
-            <x-form-button class="w-100 py-2" type="submit" :is-submit="true">Log in</x-form-button>
+            <x-form-button class="w-100 py-2" type="submit">Log in</x-form-button>
         </x-auth.form-row>
+
+        <a class="form-text font-inter text-decoration-none" href="{{ route('register') }}">Don't have an account? Register now.</a>
     </x-auth.input-container>
 </x-auth.layout>
