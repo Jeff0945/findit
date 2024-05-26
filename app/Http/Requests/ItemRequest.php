@@ -47,10 +47,16 @@ class ItemRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        $this->merge([
-            'claimed_at'  => $this->toUTC($this->get('claimed_at')),
-            'reported_at' => $this->toUTC($this->get('reported_at'))
-        ]);
+        $fields = ['claimed_at', 'reported_at'];
+        $data   = [];
+
+        foreach ($fields as $field) {
+            if ($this->filled($field)) {
+                $data[$field] = $this->toUTC($this->get($field));
+            }
+        }
+
+        $this->merge($data);
     }
 
     private function toUTC($dateTime): string
