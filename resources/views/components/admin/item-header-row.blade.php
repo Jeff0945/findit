@@ -1,9 +1,4 @@
 <tr>
-    <th style="width: 40px;">
-        <input type="checkbox"
-               style="width: 20px;height: 30px;text-align: center;"
-               required/>
-    </th>
     <th style="color: rgba(0, 0, 0, 0.5);font-weight: bold;font-family: 'Inter';font-size: 18px">
         <p>
             TITLE
