@@ -1,12 +1,6 @@
 @props(['item'])
 
 <tr>
-    <td>
-        <input class="d-xxl-flex justify-content-xxl-center align-items-xxl-center"
-               type="checkbox"
-               style="width: 20px;height: 30px;text-align: center;"
-               required/>
-    </td>
     <td style="color: rgba(0, 0, 0, 0.5);font-family: 'Inter';">
         <a href="{{ route('admin.items.show', ['item' => $item->id]) }}"
            style="color: transparent;font-size: 18px;">
