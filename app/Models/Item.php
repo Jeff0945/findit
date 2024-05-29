@@ -33,7 +33,11 @@ class Item extends Model
 
     public function scopeSearch($query, $search = '', $filter = 'all')
     {
-        return $query->where('name', 'LIKE', "%$search%")
+        $like = config('database.default') === 'pgsql'
+            ? 'ilike'
+            : 'like';
+
+        return $query->where('name', $like, "%$search%")
             ->when(($filter !== 'all' && $filter), function ($query) use ($filter) {
                 $query->whereHas('status', function ($status) use ($filter) {
                     $status->where('value', $filter);
