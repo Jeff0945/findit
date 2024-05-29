@@ -1,4 +1,4 @@
-<x-admin.layout>
+php<x-admin.layout>
     <x-slot:title>View item</x-slot:title>
 
     <form style="width: 1920px;height: 1080px;background: rgba(240, 238, 226, 1);">
