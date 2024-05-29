@@ -31,6 +31,16 @@ class Item extends Model
         'created_by',
     ];
 
+    public function scopeSearch($query, $search = '', $filter = 'all')
+    {
+        return $query->where('name', 'LIKE', "%$search%")
+            ->when(($filter !== 'all' && $filter), function ($query) use ($filter) {
+                $query->whereHas('status', function ($status) use ($filter) {
+                    $status->where('value', $filter);
+                });
+            });
+    }
+
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachment::class);
