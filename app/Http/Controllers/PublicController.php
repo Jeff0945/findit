@@ -18,7 +18,9 @@ class PublicController extends Controller
 
     public function allItems()
     {
-        $items = Item::with(['attachment'])->get();
+        $items = Item::with(['attachment'])
+            ->search(request('search'))
+            ->get();
 
         return view('public.all-items', compact(['items']));
     }

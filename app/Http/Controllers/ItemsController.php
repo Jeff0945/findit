@@ -12,7 +12,10 @@ class ItemsController extends Controller
 {
     public function index()
     {
-        $items = Item::with(['status'])->latest()->get();
+        $items = Item::with(['status'])
+            ->search(\request('search'), \request('filter'))
+            ->latest()
+            ->get();
 
         return view('admin.items.index', compact('items'));
     }
